@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using System.Text;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 using RePKG.Application.Texture;
 using RePKG.Core.Texture;
 
@@ -55,7 +56,7 @@ namespace RePKG.Tests
             var inputFileReader = TexDecompressingTests.LoadTestFile(name);
             var inputBytes = new byte[inputFileReader.BaseStream.Length];
             var bytesRead = inputFileReader.Read(inputBytes, 0, (int) inputFileReader.BaseStream.Length);
-            Assert.AreEqual(inputFileReader.BaseStream.Length, bytesRead, "Failed to read input file");
+            ClassicAssert.AreEqual(inputFileReader.BaseStream.Length, bytesRead, "Failed to read input file");
             inputFileReader.Close();
 
             // Read tex
@@ -69,7 +70,7 @@ namespace RePKG.Tests
             var outputBytes = memoryStream.ToArray();
 
             // Verify
-            Assert.AreEqual(inputBytes.Length, outputBytes.Length, "Written tex size doesn't match input size");
+            ClassicAssert.AreEqual(inputBytes.Length, outputBytes.Length, "Written tex size doesn't match input size");
 
             for (var i = 0; i < inputBytes.Length; i++)
             {
