@@ -2,7 +2,6 @@ using System;
 using System.IO;
 using System.Text;
 using NUnit.Framework;
-using NUnit.Framework.Legacy;
 using RePKG.Application.Texture;
 using RePKG.Core.Texture;
 
@@ -56,7 +55,7 @@ namespace RePKG.Tests
             var bytes = firstMipmap.Bytes;
 
             if (validateFlags.HasValue)
-                ClassicAssert.IsTrue(texture.Header.Flags.HasFlag(validateFlags));
+                Assert.That(texture.Header.Flags.HasFlag(validateFlags), Is.True);
 
             if (validateBytes)
             {
@@ -103,7 +102,7 @@ namespace RePKG.Tests
         {
             var validatedBytes = File.ReadAllBytes($"{TestHelper.BasePath}\\{ValidatedDirectoryName}\\{name}.bytes");
 
-            ClassicAssert.AreEqual(bytes.Length, validatedBytes.Length);
+            Assert.That(bytes.Length, Is.EqualTo(validatedBytes.Length));
 
             for (var i = 0; i < validatedBytes.Length; i++)
             {

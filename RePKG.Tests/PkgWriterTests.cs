@@ -1,7 +1,6 @@
 using System.IO;
 using System.Text;
 using NUnit.Framework;
-using NUnit.Framework.Legacy;
 using RePKG.Application.Package;
 using RePKG.Core.Package;
 using RePKG.Core.Package.Interfaces;
@@ -47,18 +46,18 @@ namespace RePKG.Tests
             }
 
             // Verify
-            ClassicAssert.AreEqual(package.Magic, readPackage.Magic);
-            ClassicAssert.AreEqual(package.Entries.Count, readPackage.Entries.Count);
+            Assert.That(package.Magic, Is.EqualTo(readPackage.Magic));
+            Assert.That(package.Entries.Count, Is.EqualTo(readPackage.Entries.Count));
 
             for (var i = 0; i < package.Entries.Count; i++)
             {
                 var entry = package.Entries[i];
                 var readEntry = readPackage.Entries[i];
 
-                ClassicAssert.AreEqual(entry.Bytes, readEntry.Bytes);
-                ClassicAssert.AreEqual(entry.Extension, readEntry.Extension);
-                ClassicAssert.AreEqual(entry.Length, readEntry.Length);
-                ClassicAssert.AreEqual(entry.Offset, readEntry.Offset);
+                Assert.That(entry.Bytes, Is.EqualTo(readEntry.Bytes));
+                Assert.That(entry.Extension, Is.EqualTo(readEntry.Extension));
+                Assert.That(entry.Length, Is.EqualTo(readEntry.Length));
+                Assert.That(entry.Offset, Is.EqualTo(readEntry.Offset));
             }
         }
     }
